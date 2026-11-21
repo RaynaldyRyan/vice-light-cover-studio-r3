@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Light Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VL</span>
+    <div>
+      <h1>VICE LIGHT COVER STUDIO</h1>
+      <p>Your photos, turned into Vice City sunset cover art. 100% offline — photos never leave this machine.</p>
+    </div>
+  </div>
+  <button id="exportTopBtn" class="btn btn-gold" type="button">Export PNG</button>
+</header>
+
+<main class="workspace">
+  <aside class="controls">
+    <section class="panel">
+      <h2>1 · Photos</h2>
+      <label class="btn btn-pink file-btn">Add your photos
+        <input id="photoInput" type="file" accept="image/*" multiple hidden>
+      </label>
+      <p class="hint">Or tap a sample scene below. Click a panel in the preview, then pick which photo fills it. Drag a panel to move the photo, use Zoom to frame it.</p>
+      <div id="sampleRow" class="sample-row"></div>
+      <div class="row">
+        <label class="lbl" for="zoomSlider">Zoom</label>
+        <input id="zoomSlider" type="range" min="1" max="2.5" step="0.01" value="1">
+        <span id="zoomVal" class="val">1.00×</span>
+      </div>
+      <div class="row btn-row">
+        <button id="fillAllBtn" class="btn btn-ghost" type="button">Fill all panels with this photo</button>
+        <button id="resetCropBtn" class="btn btn-ghost" type="button">Reset crop</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>2 · Layout</h2>
+      <div class="chip-row" id="layoutRow">
+        <button class="chip" data-layout="hero" type="button">Hero + Three</button>
+        <button class="chip" data-layout="grid" type="button">2×2 Grid</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>3 · Theme</h2>
+      <div class="chip-row" id="themeRow">
+        <button class="chip swatch sw-sunset" data-theme="sunset" type="button">Sunset Heist</button>
+        <button class="chip swatch sw-neon" data-theme="neon" type="button">Neon Nights</button>
+        <button class="chip swatch sw-dawn" data-theme="dawn" type="button">Rooftop Dawn</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>4 · Caption</h2>
+      <label class="lbl" for="titleInput">Title</label>
+      <input id="titleInput" type="text" maxlength="28" value="SUNSET HEIST" spellcheck="false">
+      <label class="lbl" for="subtitleInput">Subtitle</label>
+      <input id="subtitleInput" type="text" maxlength="48" value="one last score on the pier" spellcheck="false">
+    </section>
+
+    <section class="panel">
+      <h2>5 · Export</h2>
+      <div class="chip-row" id="sizeRow">
+        <button class="chip" data-size="1080x1080" type="button">1080 × 1080</button>
+        <button class="chip" data-size="1080x1350" type="button">1080 × 1350</button>
+        <button class="chip" data-size="1920x1080" type="button">1920 × 1080</button>
+      </div>
+      <button id="exportBtn" class="btn btn-gold btn-wide" type="button">Download cover PNG</button>
+      <p class="hint">Rendered at full size on canvas, saved straight to your machine.</p>
+    </section>
+  </aside>
+
+  <section class="stage">
+    <div class="canvas-wrap">
+      <canvas id="preview" width="1280" height="720"></canvas>
+      <div id="dropHint" class="drop-hint" hidden>Drop photos to fill the selected panel</div>
+    </div>
+    <p class="stage-note">Live preview — click a panel to select it, drag inside a panel to reposition its photo. The export is rendered at full size: 1080×1080, 1080×1350 or 1920×1080.</p>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
